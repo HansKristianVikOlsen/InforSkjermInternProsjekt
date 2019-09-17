@@ -20,10 +20,16 @@ function Oilers() {
   return (
     <>
       <h1>Oilers sine kamper</h1>
-      {loading ? <Spinner /> : <MatchList matches={matches} />}
-      {loading ? <Spinner /> : <MatchTable table={table} />}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <MatchList matches={matches} />
+          <MatchTable table={table} />
+        </>
+      )}
     </>
   );
 }
-
+//{loading ? <Spinner /> : <MatchTable table={table} />}
 export default Oilers;

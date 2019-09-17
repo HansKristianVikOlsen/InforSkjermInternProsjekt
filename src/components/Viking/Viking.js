@@ -20,8 +20,14 @@ function Viking() {
   return (
     <>
       <h1>Viking sine kamper</h1>
-      {loading ? <Spinner /> : <MatchList matches={matches} />}
-      {loading ? <Spinner /> : <MatchTable table={table} />}
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <MatchList matches={matches} />
+          <MatchTable table={table} />
+        </>
+      )}
     </>
   );
 }

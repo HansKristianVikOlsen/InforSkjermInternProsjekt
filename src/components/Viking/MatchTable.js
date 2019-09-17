@@ -6,6 +6,48 @@ function MatchTable(props) {
   //const standings = props.matches.standings.teamStandings;
   //const participants = props.matches.participants;
 
+  /*
+  return (
+    <div>
+      {props.table.standings
+        ? Object.keys(table).map(key => {
+            return (
+              
+                <table>
+                    <thead>
+                        <th>Plassering</th>
+                        <th>Lag</th>
+                    </thead>
+                  {table[key].teamStandings.map(team => {
+                    return (
+                      <>
+                      <tr>
+                          {team.rank}
+                      </tr>
+                      <tr>
+                      {props.table.participants[team.teamId].name}
+                      <img
+                          src={
+                            props.table.participants[team.teamId].images
+                              .clubLogo.url + "?rule=clip-56x56"
+                          }
+                          alt="fotball"
+                        />
+
+                      </tr>
+                        
+                      </>
+                    );
+                  })}
+                
+            
+            );
+          })
+        : null}
+        </table>
+    </div>
+  );
+*/
   return (
     <div>
       {props.table.standings

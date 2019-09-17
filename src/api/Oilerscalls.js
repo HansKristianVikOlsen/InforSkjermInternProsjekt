@@ -1,6 +1,6 @@
-const baseUrl = "https://vglive.no/api/vg/participants/teams/22988";
+const baseUrl = "https://vglive.no/api/vg/participants/teams/48876";
 const tableUrl =
-  "https://vglive.no/api/vg/tournaments/seasons/1877/standings?type=live-changes";
+  "https://vglive.no/api/vg/tournaments/seasons/1947/standings?type=live-changes";
 
 export function getNextMatches() {
   return fetch(baseUrl).then(res => res.json());

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getNextMatches, getTableData } from "../../api/Vikingcalls";
+import { getNextMatches, getTableData } from "../../api/Oilerscalls";
 import MatchList from "./MatchList";
 import Spinner from "../../common/Spinner";
 import "../../common/Spinner.css";
 import MatchTable from "./MatchTable";
 
-function Viking() {
+function Oilers() {
   const [matches, setMatches] = useState({});
   const [table, setTable] = useState({});
   const [loading, setLoading] = useState(true);
@@ -19,11 +19,11 @@ function Viking() {
 
   return (
     <>
-      <h1>Viking sine kamper</h1>
+      <h1>Oilers sine kamper</h1>
       {loading ? <Spinner /> : <MatchList matches={matches} />}
       {loading ? <Spinner /> : <MatchTable table={table} />}
     </>
   );
 }
 
-export default Viking;
+export default Oilers;

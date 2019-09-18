@@ -3,8 +3,9 @@ import { getNextMatches } from "../../api/Vikingcalls";
 import MatchList from "../Layout/MatchList";
 import Spinner from "../../common/Spinner";
 import "../../common/Spinner.css";
+import logo from "../../static/viking.png";
 
-import "./Viking.css";
+import "../Layout/MatchPage.css";
 
 function Viking() {
   const [matches, setMatches] = useState({});
@@ -24,8 +25,11 @@ function Viking() {
 
   return (
     <>
-      <h1 style={{ color: "#FF6400", textAlign: "center", margin: "100px" }}>
-        VIKINGKAMPER
+      <h1 style={{ color: "#FF6400", textAlign: "center", margin: "50px" }}>
+        <img width="200"
+          src={logo}
+          alt="logo"
+        />
       </h1>
       {loading ? (
         <Spinner />

@@ -10,10 +10,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     textAlign: "center",
   },
-  box: {
-    alignItems: "center",
-    backgroundColor: "#454545"
-  },
   text: {
     color: "white",
   },

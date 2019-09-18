@@ -28,7 +28,7 @@ const TeamLogo = ({ justifyContent, team }) => {
     <Box className={classes.content} justifyContent={justifyContent}>
       <img
         className={classes.icon}
-        src={team.images ? team.images.clubLogo.url + "?rule=clip-56x56"
+        src={team.images ? team.images.clubLogo.url + "?rule=clip-112x112"
           : ""}
         alt="logo"
       />

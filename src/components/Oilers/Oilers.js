@@ -36,16 +36,4 @@ function Oilers() {
     </>
   );
 }
-//{loading ? <Spinner /> : <MatchTable table={table} />}
-{/* <>
-      <h1>Oilers sine kamper</h1>
-      {loading ? (
-        <Spinner />
-      ) : (
-          <>
-            <MatchList matches={matches} />
-            <MatchTable table={table} />
-          </>
-        )}
-    </> */}
 export default Oilers;

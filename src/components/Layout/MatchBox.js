@@ -19,7 +19,8 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     color: "white",
-    backgroundColor: "black"
+    backgroundColor: "black",
+    textAlign: "center"
   },
   paper2: {
     backgroundColor: "#454545"

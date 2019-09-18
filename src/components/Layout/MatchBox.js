@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Paper } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
 import TeamLogo from "./TeamLogo";
+import MatchTime from "./MatchTime"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -45,8 +46,9 @@ const MatchCard = ({ event, teamList }) => {
   return (
     <Grid className={classes.root} container spacing={3}>
       <Grid item xs={3}>
-        <Paper className={classes.paper}>                      {event.startDate}
-        </Paper>
+        <Typography className={classes.text} variant="h6">
+          <MatchTime date={event.startDate} />
+        </Typography>
       </Grid>
       <Grid item xs={3}>
         <Paper className={classes.paper}>

@@ -49,7 +49,6 @@ const MatchCard = ({ event, teamList }) => {
       <Grid item xs={3}>
         <Paper className={classes.paper}>
           <TeamLogo
-            justifyContent="flex-start"
             team={homeTeam}
           />
         </Paper>
@@ -59,7 +58,7 @@ const MatchCard = ({ event, teamList }) => {
       </Grid>
       <Grid item xs={3}>
         <Paper className={classes.paper}>
-          <TeamLogo justifyContent="flex-start" team={visitorTeam} />
+          <TeamLogo team={visitorTeam} />
         </Paper>
       </Grid>
     </Grid>

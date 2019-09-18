@@ -22,10 +22,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TeamLogo = ({ justifyContent, team }) => {
+const TeamLogo = ({ team }) => {
   const classes = useStyles();
   return (
-    <Box className={classes.content} justifyContent={justifyContent}>
+    <Box className={classes.content} >
       <img
         className={classes.icon}
         src={team.images ? team.images.clubLogo.url + "?rule=clip-112x112"

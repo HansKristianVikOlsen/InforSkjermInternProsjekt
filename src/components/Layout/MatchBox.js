@@ -10,12 +10,11 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     textAlign: "center"
   },
-  box: {
-    alignItems: "center",
-    backgroundColor: "#454545"
-  },
   text: {
     color: "white"
+  },
+  date: {
+    textAlign: "left"
   },
   paper: {
     color: "white",
@@ -44,14 +43,14 @@ const MatchCard = ({ event, teamList }) => {
 
   return (
     <Grid className={classes.root} container spacing={3}>
-      <Grid item xs={3}>
+      <Grid className={classes.date} item xs={3}>
         <Typography className={classes.text} variant="h6">
           <MatchTime date={event.startDate} />
         </Typography>
       </Grid>
       <Grid item xs={3}>
         <Paper className={classes.paper}>
-          <TeamLogo justifyContent="flex-start" team={homeTeam} />
+          <TeamLogo team={homeTeam} />
         </Paper>
       </Grid>
       <Grid item xs={3}>
@@ -61,7 +60,7 @@ const MatchCard = ({ event, teamList }) => {
       </Grid>
       <Grid item xs={3}>
         <Paper className={classes.paper}>
-          <TeamLogo justifyContent="flex-start" team={visitorTeam} />
+          <TeamLogo team={visitorTeam} />
         </Paper>
       </Grid>
     </Grid>

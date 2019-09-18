@@ -8,11 +8,10 @@ const MatchTime = ({ date }) => {
 
     let newDate = new Date(date).toUTCString();
     console.log(newDate);
-    debugger;
     return newDate.substr(0, newDate.length - 7);
   }
 
-  return <div> {ConvertDateToString()}</div>;
+  return <div>{ConvertDateToString()}</div>;
 };
 
 export default MatchTime;

@@ -13,6 +13,9 @@ const useStyles = makeStyles(theme => ({
   text: {
     color: "white",
   },
+  date: {
+    textAlign: "left"
+  },
   paper: {
     color: "white",
     backgroundColor: "black",
@@ -41,7 +44,7 @@ const MatchCard = ({ event, teamList }) => {
 
   return (
     <Grid className={classes.root} container spacing={3}>
-      <Grid item xs={3}>
+      <Grid className={classes.date} item xs={3}>
         <Typography className={classes.text} variant="h6">
           <MatchTime date={event.startDate} />
         </Typography>

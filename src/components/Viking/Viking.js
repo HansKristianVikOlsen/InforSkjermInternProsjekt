@@ -25,7 +25,7 @@ function Viking() {
 
   return (
     <>
-      <h1 style={{ color: "#FF6400", textAlign: "center", margin: "50px" }}>
+      <h1 style={{ color: "#FF6400", textAlign: "center" }}>
         <img width="200"
           src={logo}
           alt="logo"

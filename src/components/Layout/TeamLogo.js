@@ -17,32 +17,25 @@ const useStyles = makeStyles(theme => ({
     padding: 20
   },
   text: {
-    color: "white"
+    color: "white",
+
   }
 }));
 
-const TeamLogo = ({ justifyContent, event, table }) => {
+const TeamLogo = ({ justifyContent, team }) => {
   const classes = useStyles();
-  console.log(table);
   return (
     <Box className={classes.content} justifyContent={justifyContent}>
+      <img
+        className={classes.icon}
+        src={team.images ? team.images.clubLogo.url + "?rule=clip-56x56"
+          : ""}
+        alt="logo"
+      />
       <Typography className={classes.text} variant="subtitle1">
-        {justifyContent === "flex-end"
-          ? table[event.participantIds[0]].name
-          : event.participantIds[1]}
+        {team ? team.name : "unknown"}
       </Typography>
     </Box>
   );
 };
-/* <img
-        className={classes.icon}
-        src={
-          justifyContent === "flex-end"
-            ? table.participants[event.participantIds[0]].images.clubLogo.url +
-              "?rule=clip-56x56"
-            : table.participants[event.participantIds[1]].images.clubLogo.url +
-              "?rule=clip-56x56"
-        }
-        alt="bilde"
-      />*/
 export default TeamLogo;

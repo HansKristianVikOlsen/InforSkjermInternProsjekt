@@ -1,13 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import MatchBox from "./MatchBox";
 
 function MatchList({ events, teamList }) {
-
-
-  useEffect(() => {
-    console.log(teamList);
-    console.log(events);
-  }, [teamList, events]);
 
 
   return (

@@ -10,17 +10,14 @@ function Viking() {
   const [matches, setMatches] = useState({});
   const [teamList, setTeamList] = useState({});
   const [loading, setLoading] = useState(true);
-  const [loadingTable, setLoadingTable] = useState(true);
 
 
   useEffect(() => {
-    getTableData()
-      .then(_table => {
-        setTeamList(_table.participants ? Object.values(_table.participants) : []);
-      })
-      .then(setLoadingTable(false));
     getNextMatches()
-      .then(_matches => setMatches(_matches.events ? Object.values(_matches.events).filter(event => event.tournament.phaseType !== "cup") : []))
+      .then(_matches => {
+        setMatches(_matches.events ? Object.values(_matches.events) : []);
+        setTeamList(_matches.participants ? Object.values(_matches.participants) : [])
+      })
       .then(setLoading(false));
   }, []);
 
@@ -30,7 +27,7 @@ function Viking() {
       <h1 style={{ color: "#FF6400", textAlign: "center", margin: "100px" }}>
         VIKINGKAMPER
       </h1>
-      {loading && loadingTable ? (
+      {loading ? (
         <Spinner />
       ) : (
           <MatchList events={matches} teamList={teamList} />

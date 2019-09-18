@@ -45,11 +45,11 @@ const MatchCard = ({ event, teamList }) => {
 
   return (
     <Grid container spacing={3}>
-      <Grid item>
+      <Grid item xs={3}>
         <Paper className={classes.paper}>                      {event.startDate}
         </Paper>
       </Grid>
-      <Grid item>
+      <Grid item xs={3}>
         <Paper className={classes.paper}>
           <TeamLogo
             justifyContent="flex-start"
@@ -57,10 +57,10 @@ const MatchCard = ({ event, teamList }) => {
           />
         </Paper>
       </Grid>
-      <Grid item >
+      <Grid item xs={3}>
         <Box className={classes.box}><p>vs</p></Box>
       </Grid>
-      <Grid item>
+      <Grid item xs={3}>
         <Paper className={classes.paper}>
           <TeamLogo justifyContent="flex-start" team={visitorTeam} />
         </Paper>

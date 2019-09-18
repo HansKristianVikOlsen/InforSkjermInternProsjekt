@@ -21,7 +21,7 @@ function Oilers() {
 
   return (
     <>
-      <h1 style={{ color: "#FF6400", textAlign: "center", margin: ".5em" }}>
+      <h1 style={{ color: "#FF6400", textAlign: "center" }}>
         <img
           width="200"
           src="http://www.oilers.no/wp-content/uploads/oilers-logo.svg"

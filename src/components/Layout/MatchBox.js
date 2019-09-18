@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Paper } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
 import TeamLogo from "./TeamLogo";
@@ -7,16 +7,15 @@ import MatchTime from "./MatchTime";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    alignContent: "center"
+    alignItems: "center",
+    textAlign: "center"
   },
   box: {
-    display: "flex",
     alignItems: "center",
     backgroundColor: "#454545"
   },
   text: {
-    color: "white",
-    textAlign: "center"
+    color: "white"
   },
   paper: {
     color: "white",
@@ -44,12 +43,11 @@ const MatchCard = ({ event, teamList }) => {
   }, [event.participantIds, teamList]);
 
   return (
-    <Grid container spacing={3}>
+    <Grid className={classes.root} container spacing={3}>
       <Grid item xs={3}>
-        <Paper className={classes.paper}>
-          {" "}
-          <MatchTime date={new Date(event.startDate)} />
-        </Paper>
+        <Typography className={classes.text} variant="h6">
+          <MatchTime date={event.startDate} />
+        </Typography>
       </Grid>
       <Grid item xs={3}>
         <Paper className={classes.paper}>
@@ -57,9 +55,9 @@ const MatchCard = ({ event, teamList }) => {
         </Paper>
       </Grid>
       <Grid item xs={3}>
-        <Box className={classes.box}>
-          <p>vs</p>
-        </Box>
+        <Typography className={classes.text} variant="h5">
+          vs
+        </Typography>
       </Grid>
       <Grid item xs={3}>
         <Paper className={classes.paper}>
@@ -68,23 +66,6 @@ const MatchCard = ({ event, teamList }) => {
       </Grid>
     </Grid>
   );
-
-  // return (
-  //   <Box className={classes.box} border={1} borderColor="white">
-  //     <Typography
-  //       className={classes.text}
-  //       component="h5"
-  //       variant="h5"
-  //       style={{ marginLeft: 50 }}
-  //     >
-  //       {event.startDate}
-  //     </Typography>
-  //     <Typography className={classes.text} justifyContent="flex-end" component="h5" variant="h5">
-  //       -
-  //     </Typography>
-  //
-  //   </Box>
-  // );
 };
 
 export default MatchCard;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getNextMatches, getTableData } from "../../api/Vikingcalls";
+import { getNextMatches } from "../../api/Vikingcalls";
 import MatchList from "../Layout/MatchList";
 import Spinner from "../../common/Spinner";
 import "../../common/Spinner.css";

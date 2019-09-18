@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from "react";
-import Box from "@material-ui/core/Box";
+import { Box, Grid, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
 import TeamLogo from "./TeamLogo";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    alignContent: "center"
+  },
   box: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: "black"
+    backgroundColor: "#454545"
   },
   text: {
-    color: "white"
+    color: "white",
+    textAlign: "center",
+  },
+  paper: {
+    color: "white",
+    backgroundColor: "black"
+  },
+  paper2: {
+    backgroundColor: "#454545"
   }
 }));
 
@@ -25,7 +36,6 @@ const MatchCard = ({ event, teamList }) => {
   useEffect(() => {
     const getTeamByKey = (key) => {
       let team = Object.values(teamList).find(team => team.id === key);
-      // console.log(team);
       return (team || {});
     }
     setHomeTeam(getTeamByKey(event.participantIds[0]))
@@ -33,25 +43,46 @@ const MatchCard = ({ event, teamList }) => {
   }, [event.participantIds, teamList])
 
   return (
-    <Box className={classes.box} border={1} borderColor="white">
-      <Typography
-        className={classes.text}
-        component="h5"
-        variant="h5"
-        style={{ marginLeft: 50 }}
-      >
-        {event.startDate}
-      </Typography>
-      <TeamLogo
-        justifyContent="flex-end"
-        team={homeTeam}
-      />
-      <Typography className={classes.text} component="h5" variant="h5">
-        -
-      </Typography>
-      <TeamLogo justifyContent="flex-start" team={visitorTeam} />
-    </Box>
-  );
+    <Grid container spacing={3}>
+      <Grid item>
+        <Paper className={classes.paper}>                      {event.startDate}
+        </Paper>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <TeamLogo
+            justifyContent="flex-start"
+            team={homeTeam}
+          />
+        </Paper>
+      </Grid>
+      <Grid item >
+        <Box className={classes.box}><p>vs</p></Box>
+      </Grid>
+      <Grid item>
+        <Paper className={classes.paper}>
+          <TeamLogo justifyContent="flex-start" team={visitorTeam} />
+        </Paper>
+      </Grid>
+    </Grid>
+  )
+
+  // return (
+  //   <Box className={classes.box} border={1} borderColor="white">
+  //     <Typography
+  //       className={classes.text}
+  //       component="h5"
+  //       variant="h5"
+  //       style={{ marginLeft: 50 }}
+  //     >
+  //       {event.startDate}
+  //     </Typography>
+  //     <Typography className={classes.text} justifyContent="flex-end" component="h5" variant="h5">
+  //       -
+  //     </Typography>
+  //     
+  //   </Box>
+  // );
 };
 
 export default MatchCard;

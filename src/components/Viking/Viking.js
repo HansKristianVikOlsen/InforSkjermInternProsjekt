@@ -12,30 +12,27 @@ function Viking() {
   const [teamList, setTeamList] = useState({});
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     getNextMatches()
       .then(_matches => {
         setMatches(_matches.events ? Object.values(_matches.events) : []);
-        setTeamList(_matches.participants ? Object.values(_matches.participants) : [])
+        setTeamList(
+          _matches.participants ? Object.values(_matches.participants) : []
+        );
       })
       .then(setLoading(false));
   }, []);
 
-
   return (
     <>
       <h1 style={{ color: "#FF6400", textAlign: "center" }}>
-        <img width="200"
-          src={logo}
-          alt="logo"
-        />
+        <img width="200" src={logo} alt="logo" />
       </h1>
       {loading ? (
         <Spinner />
       ) : (
-          <MatchList events={matches} teamList={teamList} />
-        )}
+        <MatchList events={matches} teamList={teamList} />
+      )}
     </>
   );
 }

@@ -17,8 +17,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: "left"
   },
   paper: {
-    color: "white",
-    backgroundColor: "black",
+    color: "#454545",
+    backgroundColor: "#505050",
     textAlign: "center"
   },
   paper2: {
@@ -41,6 +41,7 @@ const MatchCard = ({ event, teamList }) => {
     setVisitorTeam(getTeamByKey(event.participantIds[1]));
   }, [event.participantIds, teamList]);
 
+  /*
   return (
     <Grid className={classes.root} container spacing={3}>
       <Grid className={classes.date} item xs={3}>
@@ -48,9 +49,38 @@ const MatchCard = ({ event, teamList }) => {
           <MatchTime date={event.startDate} />
         </Typography>
       </Grid>
-      <Grid item xs={3}>
-        <Paper className={classes.paper}>
+
+      <Grid item xs={9}>
+        <Paper elevation={1} className={classes.paper}>
           <TeamLogo team={homeTeam} />
+          <Typography className={classes.text} variant="h5">
+            vs
+          </Typography>
+          <TeamLogo team={visitorTeam} />
+        </Paper>
+      </Grid>
+    </Grid>
+  );
+};
+
+*/
+  return (
+    <Grid
+      className={classes.root}
+      container
+      justify="space-between"
+      direction="row"
+      spacing={3}
+    >
+      <Grid className={classes.date} item xs={3}>
+        <Typography className={classes.text} variant="h6">
+          <MatchTime date={event.startDate} />
+        </Typography>
+      </Grid>
+
+      <Grid item xs={3}>
+        <Paper elevation={1} className={classes.paper}>
+          <TeamLogo team={homeTeam} align="left" />
         </Paper>
       </Grid>
       <Grid item xs={3}>
@@ -59,7 +89,7 @@ const MatchCard = ({ event, teamList }) => {
         </Typography>
       </Grid>
       <Grid item xs={3}>
-        <Paper className={classes.paper}>
+        <Paper elevation={1} className={classes.paper}>
           <TeamLogo team={visitorTeam} />
         </Paper>
       </Grid>

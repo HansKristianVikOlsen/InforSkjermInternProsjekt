@@ -17,19 +17,17 @@ const useStyles = makeStyles(theme => ({
     padding: 20
   },
   text: {
-    color: "white",
-
+    color: "white"
   }
 }));
 
 const TeamLogo = ({ team }) => {
   const classes = useStyles();
   return (
-    <Box className={classes.content} >
+    <Box className={classes.content}>
       <img
         className={classes.icon}
-        src={team.images ? team.images.clubLogo.url + "?rule=clip-112x112"
-          : ""}
+        src={team.images ? team.images.clubLogo.url + "?rule=clip-112x112" : ""}
         alt="logo"
       />
       <Typography className={classes.text} variant="subtitle1">

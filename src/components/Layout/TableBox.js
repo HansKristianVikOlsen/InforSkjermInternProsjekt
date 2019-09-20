@@ -82,7 +82,7 @@ const TableBox = ({ team, participant }) => {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} size="small">
+      <Table className={classes.table}>
         <TableHead className={classes.tablehead}>
           <TableRow>
             <TableCell align="left">Plassering</TableCell>

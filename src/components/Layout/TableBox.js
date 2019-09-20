@@ -5,49 +5,80 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import { withStyles } from "@material-ui/core/styles";
+
+const StyledTableCell = withStyles(theme => ({
+  head: {
+    width: 50
+  },
+  body: {
+    fontSize: 14
+  }
+}))(TableCell);
+
+const StyledTableRow = withStyles(theme => ({
+  root: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: "#eeeeee"
+    },
+    "&:nth-of-type(even)": {
+      backgroundColor: "#ffffff"
+    }
+  }
+}))(TableRow);
+
+const StyledTableCellWin = withStyles(theme => ({
+  head: {
+    backgroundColor: "green",
+    color: theme.palette.common.white,
+    width: 10
+  },
+  body: {
+    fontSize: 14
+  }
+}))(TableCell);
+
+const StyledTableCellDraw = withStyles(theme => ({
+  head: {
+    backgroundColor: "yellow",
+    color: theme.palette.common.black,
+    width: 10
+  },
+  body: {
+    fontSize: 14
+  }
+}))(TableCell);
+
+const StyledTableCellLoss = withStyles(theme => ({
+  head: {
+    backgroundColor: "red",
+    color: theme.palette.common.white,
+    width: 10
+  },
+  body: {
+    fontSize: 14
+  }
+}))(TableCell);
 
 const useStyles = makeStyles(theme => ({
   root: {
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
+    color: "white"
   },
+
   text: {
     color: "white"
   },
 
-  paper: {
-    color: "white",
-    backgroundColor: "black",
-    textAlign: "center"
-  },
-  paper2: {
-    backgroundColor: "#454545"
-  },
-  table: {
-    height: 1000,
-    cell: 10,
-    margin: 0
-  },
-  tablehead: {},
-
-  classLeft: {
-    float: "left"
-  },
-  classRight: {
-    float: "left"
-  },
-  icon: {
-    height: 5,
-    width: 5,
-    padding: 0
-  },
-  viking: {
-    color: "green"
+  table: {},
+  tablehead: {
+    color: "white"
   }
 }));
 
 const TableBox = ({ team, participant }) => {
-  const classes = makeStyles();
+  const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
@@ -57,15 +88,16 @@ const TableBox = ({ team, participant }) => {
             <TableCell align="left">Plassering</TableCell>
             <TableCell align="left">Lag</TableCell>
             <TableCell align="right">Kamper spilt</TableCell>
-            <TableCell align="right">Vinn</TableCell>
-            <TableCell align="right">Uavgjort</TableCell>
-            <TableCell align="right">Tap</TableCell>
-            <TableCell align="right">Poeng</TableCell>
+            <StyledTableCellWin align="right">Vinn</StyledTableCellWin>
+            <StyledTableCellDraw align="right">Uavgjort</StyledTableCellDraw>
+            <StyledTableCellLoss align="right">Tap</StyledTableCellLoss>
+            <StyledTableCell align="right">Mål</StyledTableCell>
+            <StyledTableCell align="right">Poeng</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {team.map(team => (
-            <TableRow key={team.rank}>
+            <StyledTableRow key={team.rank}>
               <TableCell align="left">{team.rank}</TableCell>
               <TableCell align="left">
                 {participant[team.teamId].name === "Viking" ||
@@ -82,8 +114,12 @@ const TableBox = ({ team, participant }) => {
               <TableCell align="right">{team.wins}</TableCell>
               <TableCell align="right">{team.draws}</TableCell>
               <TableCell align="right">{team.losses}</TableCell>
+              <TableCell align="right">
+                {team.goals.for} - {team.goals.against}{" "}
+              </TableCell>
+
               <TableCell align="right">{team.points}</TableCell>
-            </TableRow>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>

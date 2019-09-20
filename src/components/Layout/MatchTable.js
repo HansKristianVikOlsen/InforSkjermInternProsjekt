@@ -8,10 +8,6 @@ function MatchTable({ table, teamList }) {
 
   const [firstRow, setFirstRow] = useState(true);
 
-  // const table = props.table.standings;
-  //const standings = props.matches.standings.teamStandings;
-  //const participants = props.matches.participants;
-
   const getTeamByKey = key => {
     let team = Object.values(teamList).find(team => team.id === key);
     return team || {};

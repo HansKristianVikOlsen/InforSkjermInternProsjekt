@@ -7,12 +7,24 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { withStyles } from "@material-ui/core/styles";
 
+const normalSize = 20;
+
 const StyledTableCell = withStyles(theme => ({
   head: {
     width: 50
   },
   body: {
-    fontSize: 14
+    fontSize: normalSize
+  }
+}))(TableCell);
+
+const Cell = withStyles(theme => ({
+  head: {
+    width: 50,
+    fontSize: normalSize
+  },
+  body: {
+    fontSize: normalSize
   }
 }))(TableCell);
 
@@ -31,29 +43,28 @@ const StyledTableCellWin = withStyles(theme => ({
   head: {
     backgroundColor: "green",
     color: theme.palette.common.white,
-    width: 10
+    width: 10,
+    fontSize: normalSize
   },
-  body: {
-    fontSize: 14
-  }
+  body: {}
 }))(TableCell);
 
 const StyledTableCellDraw = withStyles(theme => ({
   head: {
     backgroundColor: "yellow",
     color: theme.palette.common.black,
-    width: 10
+    width: 10,
+    fontSize: normalSize
   },
-  body: {
-    fontSize: 14
-  }
+  body: {}
 }))(TableCell);
 
 const StyledTableCellLoss = withStyles(theme => ({
   head: {
     backgroundColor: "red",
     color: theme.palette.common.white,
-    width: 10
+    width: 10,
+    fontSize: normalSize
   },
   body: {
     fontSize: 14
@@ -82,12 +93,12 @@ const TableBox = ({ team, participant }) => {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table}>
+      <Table className={classes.table} size="small">
         <TableHead className={classes.tablehead}>
           <TableRow>
-            <TableCell align="left">Plassering</TableCell>
-            <TableCell align="left">Lag</TableCell>
-            <TableCell align="right">Kamper spilt</TableCell>
+            <Cell align="left">Plassering</Cell>
+            <Cell align="left">Lag</Cell>
+            <Cell align="right">Kamper spilt</Cell>
             <StyledTableCellWin align="right">Vinn</StyledTableCellWin>
             <StyledTableCellDraw align="right">Uavgjort</StyledTableCellDraw>
             <StyledTableCellLoss align="right">Tap</StyledTableCellLoss>
@@ -98,27 +109,27 @@ const TableBox = ({ team, participant }) => {
         <TableBody>
           {team.map(team => (
             <StyledTableRow key={team.rank}>
-              <TableCell align="left">{team.rank}</TableCell>
-              <TableCell align="left">
+              <Cell align="left">{team.rank}</Cell>
+              <Cell align="left">
                 {participant[team.teamId].name === "Viking" ||
-                  participant[team.teamId].name === "Stavanger Oilers" ? (
-                    <>
-                      {" "}
-                      <b>{participant[team.teamId].name}</b>{" "}
-                    </>
-                  ) : (
-                    participant[team.teamId].name
-                  )}
-              </TableCell>
-              <TableCell align="right">{team.played}</TableCell>
-              <TableCell align="right">{team.wins}</TableCell>
-              <TableCell align="right">{team.draws}</TableCell>
-              <TableCell align="right">{team.losses}</TableCell>
-              <TableCell align="right">
+                participant[team.teamId].name === "Stavanger Oilers" ? (
+                  <>
+                    {" "}
+                    <b>{participant[team.teamId].name}</b>{" "}
+                  </>
+                ) : (
+                  participant[team.teamId].name
+                )}
+              </Cell>
+              <Cell align="right">{team.played}</Cell>
+              <Cell align="right">{team.wins}</Cell>
+              <Cell align="right">{team.draws}</Cell>
+              <Cell align="right">{team.losses}</Cell>
+              <Cell align="right">
                 {team.goals.for} - {team.goals.against}{" "}
-              </TableCell>
+              </Cell>
 
-              <TableCell align="right">{team.points}</TableCell>
+              <Cell align="right">{team.points}</Cell>
             </StyledTableRow>
           ))}
         </TableBody>

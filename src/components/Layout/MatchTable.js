@@ -17,14 +17,14 @@ function MatchTable({ table, teamList }) {
       {table && teamList
         ? Object.keys(table).map(key => {
           return (
-            <>
+            <div className="container">
               {teamList.participants ? (
                 <TableBox
                   team={table[key].teamStandings}
                   participant={teamList.participants}
                 />
               ) : null}
-            </>
+            </div>
           );
         })
         : null}

@@ -21,7 +21,7 @@ const VikingTable = () => {
   }, []);
 
   return (
-    <div>
+    <div className="table">
       {loading ? <Spinner /> : <MatchTable table={table} teamList={teamList} />}
     </div>
   );

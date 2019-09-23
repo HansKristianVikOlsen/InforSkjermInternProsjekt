@@ -6,7 +6,6 @@ import logo from "../../static/viking.png";
 import useAxiosFetch from "../../api/useAxiosFetch"
 import { filterTeams, filterEvents } from "../../api/filterData"
 
-import "../Layout/MatchPage.css";
 
 
 const baseUrl = "https://vglive.no/api/vg/participants/teams/22988";
@@ -29,16 +28,18 @@ function Viking() {
 
 
   return (
-    <>
+    <div className="events" >
       <h1 style={{ color: "#FF6400", textAlign: "center" }}>
         <img width="200" src={logo} alt="logo" />
       </h1>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-          <MatchList events={matches} teamList={teamList} />
-        )}
-    </>
+      {
+        isLoading ? (
+          <Spinner />
+        ) : (
+            <MatchList events={matches} teamList={teamList} />
+          )
+      }
+    </div>
   );
 }
 export default Viking;

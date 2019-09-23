@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Paper, Table } from "@material-ui/core";
+import { Paper, Table } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -101,14 +101,14 @@ const TableBox = ({ team, participant }) => {
               <TableCell align="left">{team.rank}</TableCell>
               <TableCell align="left">
                 {participant[team.teamId].name === "Viking" ||
-                participant[team.teamId].name === "Stavanger Oilers" ? (
-                  <>
-                    {" "}
-                    <b>{participant[team.teamId].name}</b>{" "}
-                  </>
-                ) : (
-                  participant[team.teamId].name
-                )}
+                  participant[team.teamId].name === "Stavanger Oilers" ? (
+                    <>
+                      {" "}
+                      <b>{participant[team.teamId].name}</b>{" "}
+                    </>
+                  ) : (
+                    participant[team.teamId].name
+                  )}
               </TableCell>
               <TableCell align="right">{team.played}</TableCell>
               <TableCell align="right">{team.wins}</TableCell>

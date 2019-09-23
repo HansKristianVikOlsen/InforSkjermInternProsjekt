@@ -4,13 +4,12 @@ import MatchBox from "./MatchBox";
 function MatchList({ events, teamList }) {
   return (
     <div>
-      {events
-        ? Object.keys(events).map(key => {
-            return (
-              <MatchBox key={key} event={events[key]} teamList={teamList} />
-            );
-          })
-        : null}
+      {Object.values(events).map(event =>
+        (
+          <MatchBox key={event.id} event={event} teamList={teamList} />
+        )
+      )
+      }
     </div>
   );
 }

@@ -26,44 +26,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const MatchCard = ({ event, teamList }) => {
+const MatchBox = ({ event, teamList }) => {
   const [homeTeam, setHomeTeam] = useState({});
   const [visitorTeam, setVisitorTeam] = useState({});
 
   const classes = useStyles();
 
   useEffect(() => {
-    const getTeamByKey = key => {
-      let team = Object.values(teamList).find(team => team.id === key);
+    const getTeamById = id => {
+      let team = Object.values(teamList).find(team => team.id === id);
       return team || {};
     };
-    setHomeTeam(getTeamByKey(event.participantIds[0]));
-    setVisitorTeam(getTeamByKey(event.participantIds[1]));
-  }, [event.participantIds, teamList]);
+    setHomeTeam(getTeamById(event.homeTeam));
+    setVisitorTeam(getTeamById(event.visitorTeam));
+  }, [event, teamList]);
 
-  /*
-  return (
-    <Grid className={classes.root} container spacing={3}>
-      <Grid className={classes.date} item xs={3}>
-        <Typography className={classes.text} variant="h6">
-          <MatchTime date={event.startDate} />
-        </Typography>
-      </Grid>
-
-      <Grid item xs={9}>
-        <Paper elevation={1} className={classes.paper}>
-          <TeamLogo team={homeTeam} />
-          <Typography className={classes.text} variant="h5">
-            vs
-          </Typography>
-          <TeamLogo team={visitorTeam} />
-        </Paper>
-      </Grid>
-    </Grid>
-  );
-};
-
-*/
   return (
     <Grid
       className={classes.root}
@@ -97,4 +74,4 @@ const MatchCard = ({ event, teamList }) => {
   );
 };
 
-export default MatchCard;
+export default MatchBox;

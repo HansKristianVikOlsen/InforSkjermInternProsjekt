@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TableBox from "./TableBox";
 
 function MatchTable({ table, teamList }) {
@@ -6,27 +6,27 @@ function MatchTable({ table, teamList }) {
   console.log(table);
   console.log(teamList);
 
-  const [firstRow, setFirstRow] = useState(true);
+  // const [firstRow, setFirstRow] = useState(true);
 
-  const getTeamByKey = key => {
-    let team = Object.values(teamList).find(team => team.id === key);
-    return team || {};
-  };
+  // const getTeamByKey = key => {
+  //   let team = Object.values(teamList).find(team => team.id === key);
+  //   return team || {};
+  // };
   return (
     <div>
       {table && teamList
         ? Object.keys(table).map(key => {
-            return (
-              <>
-                {teamList.participants ? (
-                  <TableBox
-                    team={table[key].teamStandings}
-                    participant={teamList.participants}
-                  />
-                ) : null}
-              </>
-            );
-          })
+          return (
+            <>
+              {teamList.participants ? (
+                <TableBox
+                  team={table[key].teamStandings}
+                  participant={teamList.participants}
+                />
+              ) : null}
+            </>
+          );
+        })
         : null}
     </div>
   );

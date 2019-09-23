@@ -2,7 +2,6 @@ import React from "react";
 
 const MatchTime = ({ date }) => {
   function ConvertDateToString() {
-    let newDate = new Date(date);
 
     let options = {
       weekday: "short",
@@ -12,7 +11,7 @@ const MatchTime = ({ date }) => {
       minute: "2-digit"
     };
 
-    return newDate.toLocaleDateString("nb-NB", options);
+    return date.toLocaleDateString("nb-NB", options);
   }
 
   return <div>{ConvertDateToString()}</div>;

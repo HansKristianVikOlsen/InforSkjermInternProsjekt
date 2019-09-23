@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { getNextMatches } from "../../api/Oilerscalls";
+import { getMatchesAndTeams } from "../../api/ApiDataCalls";
 import MatchList from "../Layout/MatchList";
 import Spinner from "../../common/Spinner";
 import "../../common/Spinner.css";
 import "../Layout/MatchPage.css";
+
+
+const baseUrl = "https://vglive.no/api/vg/participants/teams/48876";
+
 
 function Oilers() {
   const [matches, setMatches] = useState({});
@@ -11,12 +15,12 @@ function Oilers() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getNextMatches()
-      .then(_matches => {
-        setMatches(_matches.events ? Object.values(_matches.events) : []);
-        setTeamList(_matches.participants ? Object.values(_matches.participants) : [])
+    getMatchesAndTeams(baseUrl)
+      .then(({ events, teams }) => {
+        setMatches(events);
+        setTeamList(teams);
+        setLoading(false)
       })
-      .then(setLoading(false));
   }, []);
 
   return (

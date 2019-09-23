@@ -27,7 +27,7 @@ const TeamLogo = ({ team }) => {
     <Box className={classes.content}>
       <img
         className={classes.icon}
-        src={team.images ? team.images.clubLogo.url + "?rule=clip-112x112" : ""}
+        src={team ? team.imageUrl : ""}
         alt="logo"
       />
       <Typography className={classes.text} variant="subtitle1">

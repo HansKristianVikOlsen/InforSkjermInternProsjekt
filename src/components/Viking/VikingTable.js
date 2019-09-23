@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { getNextMatches, getTableData } from "../../api/Vikingcalls";
+import { getTableData } from "../../api/ApiDataCalls";
 import Spinner from "../../common/Spinner";
 import MatchTable from "../Layout/MatchTable";
+
+const tableUrl =
+  "https://vglive.no/api/vg/tournaments/seasons/1877/standings?type=live-changes";
 
 const VikingTable = () => {
   const [teamList, setTeamList] = useState({});
@@ -9,7 +12,7 @@ const VikingTable = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getTableData()
+    getTableData(tableUrl)
       .then(_table => {
         setTable(_table.standings ? Object.values(_table.standings) : []);
         setTeamList(_table);

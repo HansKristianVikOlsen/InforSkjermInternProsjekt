@@ -29,7 +29,7 @@ function Oilers() {
     <>
       <h1 style={{ color: "#FF6400", textAlign: "center" }}>
         <img
-          width="200"
+          width="160"
           src="http://www.oilers.no/wp-content/uploads/oilers-logo.svg"
           alt="logo"
         />

@@ -16,9 +16,12 @@ const VikingTable = () => {
     tableUrl,
     {}
   );
+  if (hasError) return <div>{errorMessage}</div>;
 
-  const table = data.standings ? Object.values(data.standings) : [];
-  const teamList = data ? Object.values(data) : [];
+  const tableStandings = data.standings ? Object.values(data.standings) : [];
+  const tableParticipants = data.participants
+    ? Object.values(data.participants)
+    : [];
   /*
   useEffect(() => {
     getTableData(tableUrl)
@@ -35,7 +38,10 @@ const VikingTable = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <MatchTable table={table} teamList={teamList} />
+        <MatchTable
+          tableStandings={tableStandings}
+          tableParticipants={tableParticipants}
+        />
       )}
     </div>
   );

@@ -90,6 +90,15 @@ const useStyles = makeStyles(theme => ({
 
 const TableBox = ({ team, participant }) => {
   const classes = useStyles();
+  console.log("222");
+  console.log(team);
+  console.log(participant);
+  console.log(participant[2].name);
+
+  const getTeamById = id => {
+    let team = participant.find(team => team.id === id);
+    return team || {};
+  };
 
   return (
     <Paper className={classes.root}>
@@ -111,14 +120,14 @@ const TableBox = ({ team, participant }) => {
             <StyledTableRow key={team.rank}>
               <Cell align="left">{team.rank}</Cell>
               <Cell align="left">
-                {participant[team.teamId].name === "Viking" ||
-                participant[team.teamId].name === "Stavanger Oilers" ? (
+                {getTeamById(team.teamId).name === "Viking" ||
+                getTeamById(team.teamId).name === "Stavanger Oilers" ? (
                   <>
                     {" "}
-                    <b>{participant[team.teamId].name}</b>{" "}
+                    <b>{getTeamById(team.teamId).name}</b>{" "}
                   </>
                 ) : (
-                  participant[team.teamId].name
+                  getTeamById(team.teamId).name
                 )}
               </Cell>
               <Cell align="right">{team.played}</Cell>

@@ -1,10 +1,9 @@
 import React from "react";
 import TableBox from "./TableBox";
 
-function MatchTable({ table, teamList }) {
-  debugger;
-  console.log(table);
-  console.log(teamList);
+function MatchTable({ tableStandings, tableParticipants }) {
+  console.log(tableStandings);
+  console.log(tableParticipants);
 
   // const [firstRow, setFirstRow] = useState(true);
 
@@ -14,19 +13,22 @@ function MatchTable({ table, teamList }) {
   // };
   return (
     <div>
-      {table && teamList
-        ? Object.keys(table).map(key => {
-          return (
-            <>
-              {teamList.participants ? (
-                <TableBox
-                  team={table[key].teamStandings}
-                  participant={teamList.participants}
-                />
-              ) : null}
-            </>
-          );
-        })
+      {tableStandings && tableParticipants
+        ? Object.keys(tableStandings).map(key => {
+            return (
+              <>
+                {console.log("---1")}
+                {console.log(tableStandings[key].teamStandings)}
+                {console.log("---2")}
+                {tableStandings && tableParticipants ? (
+                  <TableBox
+                    team={tableStandings[key].teamStandings}
+                    participant={tableParticipants}
+                  />
+                ) : null}
+              </>
+            );
+          })
         : null}
     </div>
   );

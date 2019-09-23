@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   text: {
-    color: "white"
+    color: "white",
+    fontFamily: "Sanchez"
   },
   date: {
     textAlign: "left"

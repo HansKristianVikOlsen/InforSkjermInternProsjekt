@@ -17,7 +17,9 @@ const useStyles = makeStyles(theme => ({
     padding: 20
   },
   text: {
-    color: "white"
+    color: "white",
+    fontSize: 20,
+    fontFamily: "Sanchez"
   }
 }));
 

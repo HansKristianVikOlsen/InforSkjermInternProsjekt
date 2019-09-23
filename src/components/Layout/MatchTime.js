@@ -11,14 +11,28 @@ weekday[4] = "Torsdag";
 weekday[5] = "Fredag";
 weekday[6] = "Lørdag";
 
+const month = new Array(12);
+month[0] = "Jan";
+month[1] = "Feb";
+month[2] = "Mar";
+month[3] = "Apr";
+month[4] = "Mai";
+month[5] = "Jun";
+month[6] = "Jul";
+month[7] = "Aug";
+month[8] = "Sep";
+month[9] = "Okt";
+month[10] = "Nov";
+month[11] = "Des";
+
 const MatchTime = ({ date }) => {
   return (
     <Grid container >
       <Grid item xs={3}>
         {weekday[date.getDay()]}
       </Grid>
-      <Grid item xs={2}>
-        {date.getDate()}/{date.getMonth()}
+      <Grid item xs={3}>
+        {(date.getDate() < 10 ? "0" : "")}{date.getDate()}. {month[date.getMonth()]}
       </Grid>
       <Grid item xs={3}>
         kl. {date.getHours()}:{(date.getMinutes() < 10 ? "0" : "")}{date.getMinutes()}

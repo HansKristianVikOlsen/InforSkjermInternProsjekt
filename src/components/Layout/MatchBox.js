@@ -34,7 +34,7 @@ const MatchBox = ({ event, teamList }) => {
 
   useEffect(() => {
     const getTeamById = id => {
-      let team = Object.values(teamList).find(team => team.id === id);
+      let team = teamList.find(team => team.id === id);
       return team || {};
     };
     setHomeTeam(getTeamById(event.homeTeam));

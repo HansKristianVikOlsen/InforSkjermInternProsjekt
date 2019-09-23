@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { getMatchesAndTeams } from "../../api/ApiDataCalls";
+import React from "react";
 import MatchList from "../Layout/MatchList";
 import Spinner from "../../common/Spinner";
 import "../../common/Spinner.css";
 import "../Layout/MatchPage.css";
+import useAxiosFetch from "../../api/useAxiosFetch"
+import { filterTeams, filterEvents } from "../../api/filterData"
 
 
 const baseUrl = "https://vglive.no/api/vg/participants/teams/48876";
 
 
 function Oilers() {
-  const [matches, setMatches] = useState({});
-  const [teamList, setTeamList] = useState({});
-  const [loading, setLoading] = useState(true);
+  const {
+    data,
+    isLoading,
+    hasError,
+    errorMessage
+  } = useAxiosFetch(baseUrl, {});
 
-  useEffect(() => {
-    getMatchesAndTeams(baseUrl)
-      .then(({ events, teams }) => {
-        setMatches(events);
-        setTeamList(teams);
-        setLoading(false)
-      })
-  }, []);
+  if (hasError) return (
+    <div>{errorMessage}</div>
+  );
+
+  const matches = filterEvents(data.events ? Object.values(data.events) : []);
+  const teamList = filterTeams(data.participants ? Object.values(data.participants) : []);
 
   return (
     <>
@@ -32,7 +34,7 @@ function Oilers() {
           alt="logo"
         />
       </h1>
-      {loading ? (
+      {isLoading ? (
         <Spinner />
       ) : (
           <MatchList events={matches} teamList={teamList} />

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { getTableData } from "../../api/ApiDataCalls";
+import React from "react";
 import Spinner from "../../common/Spinner";
 import MatchTable from "../Layout/MatchTable";
 import useAxiosFetch from "../../api/useAxiosFetch";
+import { filterStandings, filterParticipants } from "../../api/filterData";
 
 const tableUrl =
   "https://vglive.no/api/vg/tournaments/seasons/1877/standings?type=live-changes";
@@ -18,9 +18,11 @@ const VikingTable = () => {
   );
   if (hasError) return <div>{errorMessage}</div>;
 
-  const tableStandings = data.standings ? Object.values(data.standings) : [];
+  const tableStandings = data.standings
+    ? filterStandings(data.standings[0])
+    : [];
   const tableParticipants = data.participants
-    ? Object.values(data.participants)
+    ? filterParticipants(Object.values(data.participants))
     : [];
   /*
   useEffect(() => {
@@ -34,7 +36,7 @@ const VikingTable = () => {
   */
 
   return (
-    <div>
+    <div className="table">
       {isLoading ? (
         <Spinner />
       ) : (

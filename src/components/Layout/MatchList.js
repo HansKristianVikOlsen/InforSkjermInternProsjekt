@@ -3,7 +3,7 @@ import MatchBox from "./MatchBox";
 
 function MatchList({ events, teamList }) {
   return (
-    <div>
+    <div className="container">
       {events.map(event =>
         <MatchBox key={event.id} event={event} teamList={teamList} />
       )

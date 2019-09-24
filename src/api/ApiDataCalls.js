@@ -1,9 +1,7 @@
-
-
+/*
 export function getTableData(tableUrl) {
   return fetch(tableUrl).then(res => res.json());
 }
-
 
 export function getMatchesAndTeams(baseUrl) {
   return fetch(baseUrl)
@@ -19,7 +17,9 @@ export function getMatchesAndTeams(baseUrl) {
         visitorTeam: event.participantIds[1]
       }));
 
-      events = events.sort((event1, event2) => event1.startDate > event2.startDate);
+      events = events.sort(
+        (event1, event2) => event1.startDate > event2.startDate
+      );
 
       teams = Object.values(data.participants)
         .filter(part => part.type === "team")
@@ -32,6 +32,7 @@ export function getMatchesAndTeams(baseUrl) {
       return { events, teams };
     })
     .catch(error => {
-      console.log(error)
-    })
+      console.log(error);
+    });
 }
+*/

@@ -5,9 +5,11 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Fab from "@material-ui/core/Fab";
 import { withStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
 
-const normalSize = 20;
+const normalSize = 25;
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -20,8 +22,17 @@ const StyledTableCell = withStyles(theme => ({
 
 const Cell = withStyles(theme => ({
   head: {
-    width: 50,
     fontSize: normalSize
+  },
+  body: {
+    fontSize: normalSize
+  }
+}))(TableCell);
+
+const CellHead = withStyles(theme => ({
+  head: {
+    fontSize: normalSize,
+    color: "white"
   },
   body: {
     fontSize: normalSize
@@ -37,6 +48,14 @@ const StyledTableRow = withStyles(theme => ({
       backgroundColor: "#ffffff"
     }
   }
+}))(TableRow);
+
+const StyledTableRowHead = withStyles(theme => ({
+  root: {
+    backgroundColor: "#111111",
+    color: "white"
+  },
+  body: {}
 }))(TableRow);
 
 const StyledTableCellWin = withStyles(theme => ({
@@ -75,7 +94,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     alignItems: "center",
     textAlign: "center",
-    color: "white"
+    color: "white",
+    margin: 50,
+    height: 500
+  },
+  avatar: {
+    backgroundColor: "green"
   },
 
   text: {
@@ -83,53 +107,102 @@ const useStyles = makeStyles(theme => ({
   },
 
   table: {},
+
   tablehead: {
-    color: "white"
-  }
+    color: "black"
+  },
+  fab: {}
 }));
 
 const TableBox = ({ team, participant }) => {
   const classes = useStyles();
+  const numberOfParticipants = team.length;
+  console.log(numberOfParticipants);
+
+  const getTeamById = id => {
+    let team = participant.find(team => team.id === id);
+    return team || {};
+  };
+
+  function highLightTeam(teamId) {
+    const teamName = getTeamById(teamId).name;
+    if (teamName === "Viking" || teamName === "Stavanger Oilers") {
+      return (
+        <>
+          <b>{teamName}</b>
+        </>
+      );
+    } else {
+      return <>{teamName}</>;
+    }
+  }
+
+  function firstPlaceHiglighter(rank) {
+    return (
+      <>
+        <Avatar
+          style={{ backgroundColor: fadeColorByRank(rank), color: "black" }}
+        >
+          {rank}
+        </Avatar>
+      </>
+    );
+  }
+
+  function fadeColorByRank(rank) {
+    //RGB
+    let step = 255 / (numberOfParticipants / 2);
+    let r = 0;
+    let g = 255;
+    let b = 0;
+    if (rank <= numberOfParticipants / 2) {
+      r = Math.round(step * (rank - 1));
+    } else {
+      r = 255;
+      g = Math.round(255 - step * (rank - 1) + 255);
+    }
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+  }
 
   return (
     <Paper className={classes.root}>
       <Table className={classes.table} size="small">
         <TableHead className={classes.tablehead}>
-          <TableRow>
-            <Cell align="left">Plassering</Cell>
-            <Cell align="left">Lag</Cell>
-            <Cell align="right">Kamper spilt</Cell>
-            <StyledTableCellWin align="right">Vinn</StyledTableCellWin>
-            <StyledTableCellDraw align="right">Uavgjort</StyledTableCellDraw>
-            <StyledTableCellLoss align="right">Tap</StyledTableCellLoss>
-            <StyledTableCell align="right">Mål</StyledTableCell>
-            <StyledTableCell align="right">Poeng</StyledTableCell>
-          </TableRow>
+          <StyledTableRowHead>
+            <CellHead align="left">Plassering</CellHead>
+            <CellHead align="left">Lag</CellHead>
+            <CellHead align="right">Kamper spilt</CellHead>
+            <CellHead align="right">V</CellHead>
+            <CellHead align="right">U</CellHead>
+            <CellHead align="right">T</CellHead>
+            <CellHead align="right">Mål</CellHead>
+            <CellHead align="right">Poeng</CellHead>
+          </StyledTableRowHead>
         </TableHead>
         <TableBody>
           {team.map(team => (
-            <StyledTableRow key={team.rank}>
-              <Cell align="left">{team.rank}</Cell>
+            <StyledTableRow key={team.teamId}>
               <Cell align="left">
-                {participant[team.teamId].name === "Viking" ||
-                participant[team.teamId].name === "Stavanger Oilers" ? (
-                  <>
-                    {" "}
-                    <b>{participant[team.teamId].name}</b>{" "}
-                  </>
-                ) : (
-                  participant[team.teamId].name
-                )}
+                <Avatar>{firstPlaceHiglighter(team.rank)}</Avatar>
               </Cell>
+              <Cell align="left">{highLightTeam(team.teamId)}</Cell>
               <Cell align="right">{team.played}</Cell>
-              <Cell align="right">{team.wins}</Cell>
-              <Cell align="right">{team.draws}</Cell>
-              <Cell align="right">{team.losses}</Cell>
-              <Cell align="right">
-                {team.goals.for} - {team.goals.against}{" "}
+              <Cell style={{ color: "green", width: 5 }} align="right">
+                {team.wins}
+              </Cell>
+              <Cell style={{ width: 5 }} align="right">
+                {team.draws}
+              </Cell>
+              <Cell style={{ color: "red", width: 5 }} align="right">
+                {team.losses}
+              </Cell>
+              <Cell style={{ width: 150 }} align="right">
+                {team.goals.forGoals} - {team.goals.againstGoals}{" "}
               </Cell>
 
-              <Cell align="right">{team.points}</Cell>
+              <Cell style={{ width: 100 }} align="right">
+                {team.points}
+              </Cell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -141,6 +214,17 @@ const TableBox = ({ team, participant }) => {
 export default TableBox;
 
 /*
+<Avatar className={classes.avatar}>{team.rank}</Avatar>
+<Fab
+                  elevation={0}
+                  size="small"
+                  aria-label=""
+                  className={classes.fab}
+                  color="grey"
+                >
+                  {team.rank}
+                </Fab>
+
 <Grid container className={classes.root} spacing={2}>
       <Grid item>{team.rank}</Grid>
       <Grid item>{participant.name}</Grid>
@@ -158,4 +242,15 @@ export default TableBox;
                   }
                   alt="logo"
                 />
+
+
+                {getTeamById(team.teamId).name === "Viking" ||
+                getTeamById(team.teamId).name === "Stavanger Oilers" ? (
+                  <>
+                    {" "}
+                    <b>{getTeamById(team.teamId).name}</b>{" "}
+                  </>
+                ) : (
+                  getTeamById(team.teamId).name
+                )}
     */

@@ -8,7 +8,8 @@ import MatchTime from "./MatchTime";
 const useStyles = makeStyles(theme => ({
   root: {
     alignItems: "center",
-    textAlign: "center"
+    textAlign: "center",
+    height: "100%",
   },
   text: {
     color: "black",
@@ -17,13 +18,7 @@ const useStyles = makeStyles(theme => ({
   date: {
     textAlign: "left"
   },
-  paper: {
-    color: "#454545",
-    backgroundColor: "#505050",
-    textAlign: "center"
-  },
-  paper2: {
-    backgroundColor: "#454545"
+  griditem: {
   }
 }));
 
@@ -42,34 +37,31 @@ const MatchBox = ({ event, teamList }) => {
     setVisitorTeam(getTeamById(event.visitorTeam));
   }, [event, teamList]);
 
+
   return (
     <Grid
       className={classes.root}
       container
-      justify="space-between"
+      justify="center"
       direction="row"
       spacing={3}
     >
-      <Grid className={classes.date} item xs={3}>
+      <Grid className={classes.date} item xs={12} md={3}>
         <Typography className={classes.text} variant="h6">
           <MatchTime date={event.startDate} />
         </Typography>
       </Grid>
 
-      <Grid item xs={3}>
-        <Paper elevation={1} className={classes.paper}>
-          <TeamLogo team={homeTeam} align="left" />
-        </Paper>
+      <Grid item className={classes.griditem} xs={5} md={4}>
+        <TeamLogo team={homeTeam} />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2} md={1}>
         <Typography className={classes.text} variant="h5">
           vs
         </Typography>
       </Grid>
-      <Grid item xs={3}>
-        <Paper elevation={1} className={classes.paper}>
-          <TeamLogo team={visitorTeam} />
-        </Paper>
+      <Grid item className={classes.griditem} xs={5} md={4}>
+        <TeamLogo team={visitorTeam} />
       </Grid>
     </Grid>
   );

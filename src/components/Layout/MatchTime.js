@@ -28,13 +28,10 @@ month[11] = "Des";
 const MatchTime = ({ date }) => {
   return (
     <Grid container >
-      <Grid item xs={3}>
-        {weekday[date.getDay()]}
-      </Grid>
-      <Grid item xs={3}>
+      <Grid item xs>
         {(date.getDate() < 10 ? "0" : "")}{date.getDate()}. {month[date.getMonth()]}
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs>
         kl. {date.getHours()}:{(date.getMinutes() < 10 ? "0" : "")}{date.getMinutes()}
       </Grid>
     </Grid>
@@ -42,3 +39,6 @@ const MatchTime = ({ date }) => {
 };
 
 export default MatchTime;
+{/* <Grid item xs={3}>
+        {weekday[date.getDay()]}
+      </Grid> */}

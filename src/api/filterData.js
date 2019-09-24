@@ -19,7 +19,7 @@ export const filterEvents = data => {
           homeTeam: event.participantIds[0],
           visitorTeam: event.participantIds[1]
         }))
-        .sort((e1, e2) => e1.startDate > e2.startDate)
+        .sort((e1, e2) => (e1.startDate > e2.startDate ? 1 : -1))
     : [];
 };
 

@@ -27,8 +27,8 @@ month[11] = "Des";
 
 const MatchTime = ({ date }) => {
   return (
-    <Grid container spacing={0}>
-      <Grid item xs={3} sm={3} md={5} lg={5} flex="1 1 auto">
+    <Grid container spacing={1} >
+      <Grid item xs={3} sm={3} md={5} lg={5} style={{ minWidth: "90px" }} >
         {(date.getDate() < 10 ? "0" : "")}{date.getDate()}. {month[date.getMonth()]}
       </Grid>
       <Grid item xs={9} sm={9} md={7} lg={7} alignItems="left">

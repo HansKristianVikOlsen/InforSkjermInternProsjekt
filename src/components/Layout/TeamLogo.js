@@ -22,8 +22,8 @@ const useStyles = makeStyles(theme => ({
     padding: 20,
   },
   paper: {
-    backgroundColor: "#656565"
-  }
+    backgroundColor: "#656565",
+  },
 }));
 
 const TeamLogo = ({ team }) => {

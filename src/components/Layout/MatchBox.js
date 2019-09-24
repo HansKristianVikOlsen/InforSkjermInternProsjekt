@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
 import TeamLogo from "./TeamLogo";
@@ -9,7 +9,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     alignItems: "center",
     textAlign: "center",
-    height: "100%",
   },
   text: {
     color: "black",

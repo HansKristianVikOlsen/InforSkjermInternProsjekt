@@ -5,27 +5,18 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Fab from "@material-ui/core/Fab";
 import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
 const normalSize = 25;
-
-const StyledTableCell = withStyles(theme => ({
-  head: {
-    width: 50
-  },
-  body: {
-    fontSize: normalSize
-  }
-}))(TableCell);
 
 const Cell = withStyles(theme => ({
   head: {
     fontSize: normalSize
   },
   body: {
-    fontSize: normalSize
+    fontSize: normalSize,
+    height: "10px"
   }
 }))(TableCell);
 
@@ -33,9 +24,6 @@ const CellHead = withStyles(theme => ({
   head: {
     fontSize: normalSize,
     color: "white"
-  },
-  body: {
-    fontSize: normalSize
   }
 }))(TableCell);
 
@@ -54,49 +42,15 @@ const StyledTableRowHead = withStyles(theme => ({
   root: {
     backgroundColor: "#111111",
     color: "white"
-  },
-  body: {}
-}))(TableRow);
-
-const StyledTableCellWin = withStyles(theme => ({
-  head: {
-    backgroundColor: "green",
-    color: theme.palette.common.white,
-    width: 10,
-    fontSize: normalSize
-  },
-  body: {}
-}))(TableCell);
-
-const StyledTableCellDraw = withStyles(theme => ({
-  head: {
-    backgroundColor: "yellow",
-    color: theme.palette.common.black,
-    width: 10,
-    fontSize: normalSize
-  },
-  body: {}
-}))(TableCell);
-
-const StyledTableCellLoss = withStyles(theme => ({
-  head: {
-    backgroundColor: "red",
-    color: theme.palette.common.white,
-    width: 10,
-    fontSize: normalSize
-  },
-  body: {
-    fontSize: 14
   }
-}))(TableCell);
+}))(TableRow);
 
 const useStyles = makeStyles(theme => ({
   root: {
     alignItems: "center",
     textAlign: "center",
     color: "white",
-    margin: 50,
-    height: 500
+    margin: 50
   },
   avatar: {
     backgroundColor: "green"
@@ -141,7 +95,10 @@ const TableBox = ({ team, participant }) => {
     return (
       <>
         <Avatar
-          style={{ backgroundColor: fadeColorByRank(rank), color: "black" }}
+          style={{
+            backgroundColor: fadeColorByRank(rank),
+            color: "black"
+          }}
         >
           {rank}
         </Avatar>
@@ -182,9 +139,7 @@ const TableBox = ({ team, participant }) => {
         <TableBody>
           {team.map(team => (
             <StyledTableRow key={team.teamId}>
-              <Cell align="left">
-                <Avatar>{firstPlaceHiglighter(team.rank)}</Avatar>
-              </Cell>
+              <Cell align="left">{firstPlaceHiglighter(team.rank)}</Cell>
               <Cell align="left">{highLightTeam(team.teamId)}</Cell>
               <Cell align="right">{team.played}</Cell>
               <Cell style={{ color: "green", width: 5 }} align="right">
@@ -212,45 +167,3 @@ const TableBox = ({ team, participant }) => {
 };
 
 export default TableBox;
-
-/*
-<Avatar className={classes.avatar}>{team.rank}</Avatar>
-<Fab
-                  elevation={0}
-                  size="small"
-                  aria-label=""
-                  className={classes.fab}
-                  color="grey"
-                >
-                  {team.rank}
-                </Fab>
-
-<Grid container className={classes.root} spacing={2}>
-      <Grid item>{team.rank}</Grid>
-      <Grid item>{participant.name}</Grid>
-      <Grid item>{participant.name}</Grid>
-    </Grid>
-
-
-    <img
-                  className={classes.icon}
-                  src={
-                    participant[team.teamId].images
-                      ? participant[team.teamId].images.clubLogo.url +
-                        "?rule=clip-56x56"
-                      : ""
-                  }
-                  alt="logo"
-                />
-
-
-                {getTeamById(team.teamId).name === "Viking" ||
-                getTeamById(team.teamId).name === "Stavanger Oilers" ? (
-                  <>
-                    {" "}
-                    <b>{getTeamById(team.teamId).name}</b>{" "}
-                  </>
-                ) : (
-                  getTeamById(team.teamId).name
-                )}
-    */

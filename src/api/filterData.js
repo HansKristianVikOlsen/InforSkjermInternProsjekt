@@ -23,7 +23,6 @@ export const filterEvents = data => {
     : [];
 };
 
-//Not used under
 export const filterStandings = data => {
   return data.teamStandings
     ? data.teamStandings.map(team => ({

@@ -20,23 +20,6 @@ const OilersTable = () => {
   const tableParticipants = data.participants
     ? filterParticipants(Object.values(data.participants))
     : [];
-  /*
-  const tableStandings = data.standings ? Object.values(data.standings) : [];
-  const tableParticipants = data.participants
-    ? Object.values(data.participants)
-    : [];
-
-    */
-  /*
-  useEffect(() => {
-    getTableData(tableUrl)
-      .then(_table => {
-        setTable(_table.standings ? Object.values(_table.standings) : []);
-        setTeamList(_table);
-      })
-      .then(setLoading(false));
-  }, []);
-  */
 
   return (
     <div className="table">
@@ -52,5 +35,4 @@ const OilersTable = () => {
   );
 };
 
-//_table.participants ? Object.values(_table.participants) : []
 export default OilersTable;

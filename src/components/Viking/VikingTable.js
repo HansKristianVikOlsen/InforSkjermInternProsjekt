@@ -8,10 +8,6 @@ const tableUrl =
   "https://vglive.no/api/vg/tournaments/seasons/1877/standings?type=live-changes";
 
 const VikingTable = () => {
-  // const [teamList, setTeamList] = useState({});
-  // const [table, setTable] = useState({});
-  //  const [loading, setLoading] = useState(true);
-
   const { data, isLoading, hasError, errorMessage } = useAxiosFetch(
     tableUrl,
     {}
@@ -24,16 +20,6 @@ const VikingTable = () => {
   const tableParticipants = data.participants
     ? filterParticipants(Object.values(data.participants))
     : [];
-  /*
-  useEffect(() => {
-    getTableData(tableUrl)
-      .then(_table => {
-        setTable(_table.standings ? Object.values(_table.standings) : []);
-        setTeamList(_table);
-      })
-      .then(setLoading(false));
-  }, []);
-  */
 
   return (
     <div className="table">
@@ -49,5 +35,4 @@ const VikingTable = () => {
   );
 };
 
-//_table.participants ? Object.values(_table.participants) : []
 export default VikingTable;

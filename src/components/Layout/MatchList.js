@@ -15,11 +15,9 @@ function MatchList({ events, teamList }) {
   const classes = useStyles();
   return (
     <div className={classes.events}>
-
       {events.map(event =>
         <MatchBox key={event.id} event={event} teamList={teamList} />
-      )
-      }
+      )}
     </div>
   );
 }

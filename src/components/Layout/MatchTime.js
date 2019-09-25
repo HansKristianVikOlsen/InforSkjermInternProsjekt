@@ -28,10 +28,10 @@ month[11] = "Des";
 const MatchTime = ({ date }) => {
   return (
     <Grid container spacing={1} >
-      <Grid item xs={3} sm={3} md={5} lg={5} style={{ minWidth: "90px" }} >
+      <Grid item xs={5} sm={3} md={5} lg={5} style={{ minWidth: "90px" }} >
         {(date.getDate() < 10 ? "0" : "")}{date.getDate()}. {month[date.getMonth()]}
       </Grid>
-      <Grid item xs={9} sm={9} md={7} lg={7} alignItems="left">
+      <Grid item xs={7} sm={9} md={7} lg={7} alignItems="left">
         kl. {date.getHours()}:{(date.getMinutes() < 10 ? "0" : "")}{date.getMinutes()}
       </Grid>
     </Grid>

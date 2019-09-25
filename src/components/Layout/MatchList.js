@@ -1,9 +1,20 @@
 import React from "react";
 import MatchBox from "./MatchBox";
+import { makeStyles } from "@material-ui/styles";
+
+
+
+const useStyles = makeStyles(theme => ({
+  events: {
+    margin: "5%",
+  }
+}));
 
 function MatchList({ events, teamList }) {
+  const classes = useStyles();
   return (
-    <div className="container">
+    <div className={classes.events}>
+
       {events.map(event =>
         <MatchBox key={event.id} event={event} teamList={teamList} />
       )

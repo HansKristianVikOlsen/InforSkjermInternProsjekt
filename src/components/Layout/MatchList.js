@@ -6,7 +6,8 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
   events: {
-    margin: "5%",
+    marginLeft: "5%",
+    marginRight: "5%",
   }
 }));
 

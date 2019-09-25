@@ -12,7 +12,6 @@ const useStyles = makeStyles(theme => ({
     right: 0,
     bottom: 0,
     left: 0
-    // backgroundColor: "#454545",
   }
 }));
 

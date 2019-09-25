@@ -2,7 +2,6 @@ import React from "react";
 import MatchList from "../Layout/MatchList";
 import Spinner from "../../common/Spinner";
 import "../../common/Spinner.css";
-import "../Layout/MatchPage.css";
 import useAxiosFetch from "../../api/useAxiosFetch"
 import { filterTeams, filterEvents } from "../../api/filterData"
 

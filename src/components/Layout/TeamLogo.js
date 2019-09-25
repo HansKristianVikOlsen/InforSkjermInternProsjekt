@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     width: "50px",
   },
   text: {
-    color: "white",
+    color: "black",
     fontSize: 20,
     fontFamily: "Sanchez",
     textAlign: "left",
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     padding: 20,
   },
   paper: {
-    backgroundColor: "#656565",
+    backgroundColor: "#dddddd",
   },
 }));
 

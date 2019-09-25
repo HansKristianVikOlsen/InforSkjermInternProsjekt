@@ -16,7 +16,8 @@ const Cell = withStyles(theme => ({
   },
   body: {
     fontSize: normalSize,
-    height: "10px"
+    height: "10px",
+    color: "white"
   }
 }))(TableCell);
 
@@ -30,10 +31,11 @@ const CellHead = withStyles(theme => ({
 const StyledTableRow = withStyles(theme => ({
   root: {
     "&:nth-of-type(odd)": {
-      backgroundColor: "#eeeeee"
+      // backgroundColor: "#eeeeee"
+      backgroundColor: "#404040"
     },
     "&:nth-of-type(even)": {
-      backgroundColor: "#ffffff"
+      backgroundColor: "#505050"
     }
   }
 }))(TableRow);

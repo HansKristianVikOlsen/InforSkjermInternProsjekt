@@ -8,7 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
-const normalSize = 25;
+const normalSize = 21;
 
 const Cell = withStyles(theme => ({
   head: {
@@ -50,7 +50,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     textAlign: "center",
     color: "white",
-    margin: 50
+    margin: 0
+
   },
   avatar: {
     backgroundColor: "green"
@@ -60,7 +61,8 @@ const useStyles = makeStyles(theme => ({
     color: "white"
   },
 
-  table: {},
+  table: {
+  },
 
   tablehead: {
     color: "black"
@@ -91,13 +93,15 @@ const TableBox = ({ team, participant }) => {
     }
   }
 
-  function firstPlaceHiglighter(rank) {
+  function placeHiglighter(rank) {
     return (
       <>
         <Avatar
           style={{
             backgroundColor: fadeColorByRank(rank),
-            color: "black"
+            color: "black",
+            width: "33px",
+            height: "33px",
           }}
         >
           {rank}
@@ -122,7 +126,7 @@ const TableBox = ({ team, participant }) => {
   }
 
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} elevation={0}>
       <Table className={classes.table} size="small">
         <TableHead className={classes.tablehead}>
           <StyledTableRowHead>
@@ -139,7 +143,7 @@ const TableBox = ({ team, participant }) => {
         <TableBody>
           {team.map(team => (
             <StyledTableRow key={team.teamId}>
-              <Cell align="left">{firstPlaceHiglighter(team.rank)}</Cell>
+              <Cell align="left">{placeHiglighter(team.rank)}</Cell>
               <Cell align="left">{highLightTeam(team.teamId)}</Cell>
               <Cell align="right">{team.played}</Cell>
               <Cell style={{ color: "green", width: 5 }} align="right">

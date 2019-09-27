@@ -31,7 +31,7 @@ export const filterStandings = data => {
         played: team.played,
         points: team.points,
         wins: team.wins,
-        draws: team.draws,
+        draws: team.draws === 0 ? "-" : team.draws,
         losses: team.losses,
         goals: {
           forGoals: team.goals.for,

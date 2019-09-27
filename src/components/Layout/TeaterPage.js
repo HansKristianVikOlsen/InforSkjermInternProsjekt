@@ -1,8 +1,6 @@
 import React from "react";
 import TeaterShows from "./TeaterShows";
-import { Grid } from "@material-ui/core";
 import logo from "../../static/RogalandTeaterLogo.jpg";
-import { fontWeight } from "@material-ui/system";
 
 const TeaterPage = () => {
   return (

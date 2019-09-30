@@ -7,13 +7,13 @@ import MatchTime from "./MatchTime";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    alignItems: "center",
     textAlign: "center",
+    alignItems: "center"
   },
   text: {
     color: "white",
-    //fontFamily: "Sanchez"
-    fontSize: "23px"
+    fontFamily: "'Source Sans Pro', sans-serif",
+    fontSize: "24px"
   },
   date: {
     textAlign: "left"
@@ -42,8 +42,6 @@ const MatchBox = ({ event, teamList }) => {
     <Grid
       className={classes.root}
       container
-      justify="center"
-      direction="row"
       spacing={3}
     >
       <Grid className={classes.date} item xs={12} md={3}>
@@ -57,7 +55,7 @@ const MatchBox = ({ event, teamList }) => {
       </Grid>
       <Grid item xs={2} md={1}>
         <Typography className={classes.text} variant="h5">
-          vs
+          -
         </Typography>
       </Grid>
       <Grid item className={classes.griditem} xs={5} md={4}>

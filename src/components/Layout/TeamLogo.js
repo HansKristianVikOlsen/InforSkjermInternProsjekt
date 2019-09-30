@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     color: "black",
-    fontSize: 20,
+    fontSize: 26,
     fontFamily: "Sanchez",
     textAlign: "left",
   },
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     padding: 20,
   },
   paper: {
-    backgroundColor: "#dddddd",
+    backgroundColor: "#eeeeee",
   },
 }));
 
@@ -31,7 +31,7 @@ const TeamLogo = ({ team }) => {
   return (
     <Paper elevation={6} className={classes.paper} >
       <Grid container className={classes.grid}>
-        <Grid item xs sm md lg className={classes.griditem}>
+        <Grid item xs sm md={4} lg={4} className={classes.griditem}>
           <img
             className={classes.icon}
             src={team ? team.imageUrl : ""}
@@ -39,7 +39,7 @@ const TeamLogo = ({ team }) => {
           />
         </Grid>
         <Hidden smDown>
-          <Grid item md lg className={classes.griditem}>
+          <Grid item md={8} lg={8} className={classes.griditem}>
             <Typography className={classes.text} variant="subtitle1">
               {team ? team.name : "unknown"}
             </Typography>

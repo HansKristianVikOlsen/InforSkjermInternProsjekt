@@ -1,91 +1,43 @@
 import React from "react";
-import { Paper, Table } from "@material-ui/core";
+import { Box, Paper, Table, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
+
 
 const normalSize = 21;
 const fontFamily = "'Source Sans Pro', sans-serif";
 
-const Cell = withStyles(theme => ({
-  head: {
-    fontSize: normalSize
-  },
-  body: {
-    fontSize: normalSize,
-    fontFamily: fontFamily,
-    height: "10px",
-    color: "white",
-    border: "0"
-  }
-}))(TableCell);
-
-const CellHead = withStyles(theme => ({
-  head: {
-    fontSize: normalSize,
-    fontFamily: fontFamily,
-    color: "white",
-    border: "0"
-  }
-}))(TableCell);
-
-const StyledTableRow = withStyles(theme => ({
-  root: {
-    backgroundColor: "#404040",
-    border: "0"
-  }
-  /*
-  root: {
-    "&:nth-of-type(odd)": {
-      // backgroundColor: "#eeeeee"
-      backgroundColor: "#404040"
-    },
-    "&:nth-of-type(even)": {
-      backgroundColor: "#505050"
-    }
-  }
-  */
-}))(TableRow);
-
-const StyledTableRowHead = withStyles(theme => ({
-  root: {
-    backgroundColor: "#111111",
-    color: "white"
-  }
-}))(TableRow);
-
 const useStyles = makeStyles(theme => ({
   root: {
     alignItems: "center",
-    textAlign: "center",
+    textAlign: "left",
     color: "white",
-    margin: 0
+    fontFamily: fontFamily,
+    fontSize: normalSize,
+    minHeight: "60px",
+    marginLeft: "15px"
   },
   avatar: {
     backgroundColor: "green"
   },
 
-  text: {
-    color: "white"
+  fab: {},
+  paper: {
+    backgroundColor: "black"
   },
+  griddiv: {
+    alignItems: "center",
+    textAlign: "left",
+    color: "white",
+    fontFamily: fontFamily,
+    fontSize: normalSize,
+    marginTop: "15px",
+    marginLeft: "15px"
+  },
+  griditem: {
+    minHeight: "50px"
+  }
 
-  smallWidth: {
-    width: "20px"
-  },
-  bigWidth: {
-    width: "500px"
-  },
-
-  table: {},
-
-  tablehead: {
-    color: "black"
-  },
-  fab: {}
 }));
 
 const TableBox = ({ team, participant }) => {
@@ -143,61 +95,68 @@ const TableBox = ({ team, participant }) => {
   }
 
   return (
-    <Paper className={classes.root} elevation={0}>
-      <Table className={classes.table} size="small">
-        <TableHead className={classes.tablehead}>
-          <StyledTableRowHead>
-            <CellHead align="left">Plassering</CellHead>
-            <CellHead align="left"></CellHead>
-            <CellHead align="left">Lag</CellHead>
+    <>
+      <Paper className={classes.paper}>
+        <Grid container direction="row" className={classes.root}>
+          <Grid item xs sm md lg>
+            <Grid container lg md xs >
+              <Grid item xs={3}>Plassering</Grid>
+              <Grid item xs={6}>Lag</Grid>
+              <Grid item xs={3}>Antall kamper</Grid>
+            </Grid>
+          </Grid>
 
-            <CellHead align="right">Kamper spilt</CellHead>
-            <CellHead align="right">V</CellHead>
-            <CellHead align="right">U</CellHead>
-            <CellHead align="right">T</CellHead>
-            <CellHead align="right">Mål</CellHead>
-            <CellHead align="right">Poeng</CellHead>
-          </StyledTableRowHead>
-        </TableHead>
-        <TableBody>
-          {team.map(team => (
-            <StyledTableRow key={team.teamId}>
-              <Cell align="left" className={classes.bigWidth}>
-                {placeHiglighter(team.rank)}
-              </Cell>
-              <Cell align="left" className={classes.smallWidth}>
-                <img
-                  src={participant ? getTeamById(team.teamId).imageUrl : ""}
-                  alt="logo"
-                  height="20px"
-                  width="20px"
-                />
-              </Cell>
-              <Cell align="left">{highLightTeam(team.teamId)} </Cell>
+          <Grid item></Grid>
+          <Grid container lg md sm xs >
+            <Grid item xs={2}>V</Grid>
+            <Grid item xs={2}>U</Grid>
+            <Grid item xs={2}>T</Grid>
+            <Grid item xs={3}>Mål</Grid>
+            <Grid item xs={3}>Poeng</Grid>
+          </Grid>
+        </Grid>
 
-              <Cell align="right">{team.played}</Cell>
-              <Cell style={{ color: "green", width: 5 }} align="right">
-                {team.wins}
-              </Cell>
-              <Cell style={{ width: 5 }} align="right">
-                {team.draws}
-              </Cell>
-              <Cell style={{ color: "red", width: 5 }} align="right">
-                {team.losses}
-              </Cell>
-              <Cell style={{ width: 150 }} align="right">
-                {team.goals.forGoals} - {team.goals.againstGoals}{" "}
-              </Cell>
+      </Paper>
+      <Grid container direction="row" alignItems="stretch" className={classes.griddiv} >
+        <Grid item xs md lg>
+          {
+            team.map(team => (
+              <Grid container key={team.teamId} xs md lg spacing={2}>
+                <Grid className={classes.griditem} item xs={3}>{placeHiglighter(team.rank)}</Grid>
+                <Grid className={classes.griditem} item xs={6}>
+                  <Box>
+                    <img
+                      src={participant ? getTeamById(team.teamId).imageUrl : ""}
+                      alt="logo"
+                      height="20px"
+                      width="20px"
+                      style={{ paddingRight: "10px" }}
+                    /> &nbsp;
+  
+                {highLightTeam(team.teamId)}
+                  </Box>
+                </Grid>
+                <Grid className={classes.griditem} item xs={3}>{team.played}</Grid>
+              </Grid>
+            ))
+          }
+        </Grid>
+        <Grid item xs md lg margin="30px">
+          {
+            team.map(team => (
+              <Grid container key={team.teamId} xs md lg spacing={2}>
+                <Grid className={classes.griditem} item xs={2} style={{ color: "lightgreen" }}>{team.wins}</Grid>
+                <Grid className={classes.griditem} item xs={2} style={{ color: "yellow" }}>{team.draws}</Grid>
+                <Grid className={classes.griditem} item xs={2} style={{ color: "red" }}>{team.losses}</Grid>
+                <Grid className={classes.griditem} item xs={3}>{team.goals.forGoals} - {team.goals.againstGoals}</Grid>
+                <Grid className={classes.griditem} item xs={3}>{team.points}</Grid>
+              </Grid>))
+          }
+        </Grid>
+      </Grid>
+    </>
+  )
+}
 
-              <Cell style={{ width: 100 }} align="right">
-                {team.points}
-              </Cell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
-};
 
 export default TableBox;

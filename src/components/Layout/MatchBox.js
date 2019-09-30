@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/styles";
 import TeamLogo from "./TeamLogo";
@@ -8,7 +8,7 @@ import MatchTime from "./MatchTime";
 const useStyles = makeStyles(theme => ({
   root: {
     textAlign: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   text: {
     color: "white",
@@ -19,6 +19,10 @@ const useStyles = makeStyles(theme => ({
     textAlign: "left"
   },
   griditem: {
+  },
+  paper: {
+    backgroundColor: "#eeeeee",
+    height: "auto"
   }
 }));
 
@@ -51,7 +55,9 @@ const MatchBox = ({ event, teamList }) => {
       </Grid>
 
       <Grid item className={classes.griditem} xs={5} md={4}>
-        <TeamLogo team={homeTeam} />
+        <Paper elevation={6} className={classes.paper} >
+          <TeamLogo team={homeTeam} />
+        </Paper>
       </Grid>
       <Grid item xs={2} md={1}>
         <Typography className={classes.text} variant="h5">
@@ -59,7 +65,9 @@ const MatchBox = ({ event, teamList }) => {
         </Typography>
       </Grid>
       <Grid item className={classes.griditem} xs={5} md={4}>
-        <TeamLogo team={visitorTeam} />
+        <Paper elevation={6} className={classes.paper} >
+          <TeamLogo team={visitorTeam} />
+        </Paper>
       </Grid>
     </Grid>
   );

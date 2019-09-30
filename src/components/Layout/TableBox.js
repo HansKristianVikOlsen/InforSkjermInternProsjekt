@@ -20,7 +20,7 @@ const Cell = withStyles(theme => ({
     fontFamily: fontFamily,
     height: "10px",
     color: "white",
-    border: "none"
+    border: "0"
   }
 }))(TableCell);
 
@@ -29,14 +29,14 @@ const CellHead = withStyles(theme => ({
     fontSize: normalSize,
     fontFamily: fontFamily,
     color: "white",
-    border: "none"
+    border: "0"
   }
 }))(TableCell);
 
 const StyledTableRow = withStyles(theme => ({
   root: {
     backgroundColor: "#404040",
-    border: "none"
+    border: "0"
   }
   /*
   root: {

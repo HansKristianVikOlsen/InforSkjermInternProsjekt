@@ -91,7 +91,6 @@ const useStyles = makeStyles(theme => ({
 const TableBox = ({ team, participant }) => {
   const classes = useStyles();
   const numberOfParticipants = team.length;
-  console.log(numberOfParticipants);
 
   const getTeamById = id => {
     let team = participant.find(team => team.id === id);

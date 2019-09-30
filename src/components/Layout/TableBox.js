@@ -9,6 +9,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 
 const normalSize = 21;
+const fontFamily = "'Source Sans Pro', sans-serif";
 
 const Cell = withStyles(theme => ({
   head: {
@@ -16,19 +17,28 @@ const Cell = withStyles(theme => ({
   },
   body: {
     fontSize: normalSize,
+    fontFamily: fontFamily,
     height: "10px",
-    color: "white"
+    color: "white",
+    border: "none"
   }
 }))(TableCell);
 
 const CellHead = withStyles(theme => ({
   head: {
     fontSize: normalSize,
-    color: "white"
+    fontFamily: fontFamily,
+    color: "white",
+    border: "none"
   }
 }))(TableCell);
 
 const StyledTableRow = withStyles(theme => ({
+  root: {
+    backgroundColor: "#404040",
+    border: "none"
+  }
+  /*
   root: {
     "&:nth-of-type(odd)": {
       // backgroundColor: "#eeeeee"
@@ -38,6 +48,7 @@ const StyledTableRow = withStyles(theme => ({
       backgroundColor: "#505050"
     }
   }
+  */
 }))(TableRow);
 
 const StyledTableRowHead = withStyles(theme => ({
@@ -53,7 +64,6 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center",
     color: "white",
     margin: 0
-
   },
   avatar: {
     backgroundColor: "green"
@@ -63,8 +73,14 @@ const useStyles = makeStyles(theme => ({
     color: "white"
   },
 
-  table: {
+  smallWidth: {
+    width: "20px"
   },
+  bigWidth: {
+    width: "500px"
+  },
+
+  table: {},
 
   tablehead: {
     color: "black"
@@ -103,7 +119,7 @@ const TableBox = ({ team, participant }) => {
             backgroundColor: fadeColorByRank(rank),
             color: "black",
             width: "33px",
-            height: "33px",
+            height: "33px"
           }}
         >
           {rank}
@@ -133,7 +149,9 @@ const TableBox = ({ team, participant }) => {
         <TableHead className={classes.tablehead}>
           <StyledTableRowHead>
             <CellHead align="left">Plassering</CellHead>
+            <CellHead align="left"></CellHead>
             <CellHead align="left">Lag</CellHead>
+
             <CellHead align="right">Kamper spilt</CellHead>
             <CellHead align="right">V</CellHead>
             <CellHead align="right">U</CellHead>
@@ -145,8 +163,19 @@ const TableBox = ({ team, participant }) => {
         <TableBody>
           {team.map(team => (
             <StyledTableRow key={team.teamId}>
-              <Cell align="left">{placeHiglighter(team.rank)}</Cell>
-              <Cell align="left">{highLightTeam(team.teamId)}</Cell>
+              <Cell align="left" className={classes.bigWidth}>
+                {placeHiglighter(team.rank)}
+              </Cell>
+              <Cell align="left" className={classes.smallWidth}>
+                <img
+                  src={participant ? getTeamById(team.teamId).imageUrl : ""}
+                  alt="logo"
+                  height="20px"
+                  width="20px"
+                />
+              </Cell>
+              <Cell align="left">{highLightTeam(team.teamId)} </Cell>
+
               <Cell align="right">{team.played}</Cell>
               <Cell style={{ color: "green", width: 5 }} align="right">
                 {team.wins}

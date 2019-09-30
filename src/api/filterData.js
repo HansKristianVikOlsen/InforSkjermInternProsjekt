@@ -33,6 +33,7 @@ export const filterStandings = data => {
         wins: team.wins,
         draws: team.draws === 0 ? "-" : team.draws,
         losses: team.losses,
+
         goals: {
           forGoals: team.goals.for,
           againstGoals: team.goals.against
@@ -45,7 +46,8 @@ export const filterParticipants = data => {
   return data
     ? data.map(part => ({
         id: part.id,
-        name: part.name
+        name: part.name,
+        imageUrl: part.images.clubLogo.url + "?rule=clip-112x112"
       }))
     : [];
 };

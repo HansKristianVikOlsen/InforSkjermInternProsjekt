@@ -4,7 +4,7 @@ import TableBox from "./TableBox";
 function MatchTable({ tableStandings, tableParticipants }) {
   return (
     <div>
-      <TableBox team={tableStandings} participant={tableParticipants} />
+      <TableBox teams={tableStandings} participant={tableParticipants} />
     </div>
   );
 }

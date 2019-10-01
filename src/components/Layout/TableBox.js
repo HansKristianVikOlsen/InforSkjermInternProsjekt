@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Paper, Table, Grid, Typography } from "@material-ui/core";
+import { Box, Paper, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import Avatar from "@material-ui/core/Avatar";
+import Hidden from '@material-ui/core/Hidden';
 
 
 const normalSize = 21;
@@ -40,9 +41,9 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const TableBox = ({ team, participant }) => {
+const TableBox = ({ teams, participant }) => {
   const classes = useStyles();
-  const numberOfParticipants = team.length;
+  const numberOfParticipants = teams.length;
 
   const getTeamById = id => {
     let team = participant.find(team => team.id === id);
@@ -51,15 +52,9 @@ const TableBox = ({ team, participant }) => {
 
   function highLightTeam(teamId) {
     const teamName = getTeamById(teamId).name;
-    if (teamName === "Viking" || teamName === "Stavanger Oilers") {
-      return (
-        <>
-          <b>{teamName}</b>
-        </>
-      );
-    } else {
-      return <>{teamName}</>;
-    }
+    return (teamName === "Viking" || teamName === "Stavanger Oilers") ?
+      <b>{teamName}</b> :
+      <>{teamName}</>;
   }
 
   function placeHiglighter(rank) {
@@ -99,7 +94,7 @@ const TableBox = ({ team, participant }) => {
       <Paper className={classes.paper}>
         <Grid container direction="row" className={classes.root}>
           <Grid item xs sm md lg>
-            <Grid container lg md xs >
+            <Grid container lg md xs sm >
               <Grid item xs={3}>Plassering</Grid>
               <Grid item xs={6}>Lag</Grid>
               <Grid item xs={3}>Antall kamper</Grid>
@@ -108,20 +103,20 @@ const TableBox = ({ team, participant }) => {
 
           <Grid item></Grid>
           <Grid container lg md sm xs >
-            <Grid item xs={2}>V</Grid>
-            <Grid item xs={2}>U</Grid>
+            <Grid item xs={1}>V</Grid>
+            <Grid item xs={1}>U</Grid>
             <Grid item xs={2}>T</Grid>
-            <Grid item xs={3}>Mål</Grid>
+            <Grid item xs={5}>Mål</Grid>
             <Grid item xs={3}>Poeng</Grid>
           </Grid>
         </Grid>
 
       </Paper>
       <Grid container direction="row" alignItems="stretch" className={classes.griddiv} >
-        <Grid item xs md lg>
+        <Grid item xs sm md lg>
           {
-            team.map(team => (
-              <Grid container key={team.teamId} xs md lg spacing={2}>
+            teams.map(team => (
+              <Grid container key={team.teamId} xs sm md lg spacing={2}>
                 <Grid className={classes.griditem} item xs={3}>{placeHiglighter(team.rank)}</Grid>
                 <Grid className={classes.griditem} item xs={6}>
                   <Box>
@@ -132,8 +127,10 @@ const TableBox = ({ team, participant }) => {
                       width="20px"
                       style={{ paddingRight: "10px" }}
                     /> &nbsp;
-  
-                {highLightTeam(team.teamId)}
+
+                    <Hidden xsDown>
+                      {highLightTeam(team.teamId)}
+                    </Hidden>
                   </Box>
                 </Grid>
                 <Grid className={classes.griditem} item xs={3}>{team.played}</Grid>
@@ -143,12 +140,12 @@ const TableBox = ({ team, participant }) => {
         </Grid>
         <Grid item xs md lg margin="30px">
           {
-            team.map(team => (
-              <Grid container key={team.teamId} xs md lg spacing={2}>
-                <Grid className={classes.griditem} item xs={2} style={{ color: "lightgreen" }}>{team.wins}</Grid>
-                <Grid className={classes.griditem} item xs={2} style={{ color: "yellow" }}>{team.draws}</Grid>
-                <Grid className={classes.griditem} item xs={2} style={{ color: "red" }}>{team.losses}</Grid>
-                <Grid className={classes.griditem} item xs={3}>{team.goals.forGoals} - {team.goals.againstGoals}</Grid>
+            teams.map(team => (
+              <Grid container key={team.teamId} xs md lg spacing={2} >
+                <Grid className={classes.griditem} item xs={1} style={{ color: "lightgreen" }}>{team.wins}</Grid>
+                <Grid className={classes.griditem} item xs={1} style={{ color: "yellow" }}>{team.draws}</Grid>
+                <Grid className={classes.griditem} item xs={2} style={{ color: "orange" }}>{team.losses}</Grid>
+                <Grid className={classes.griditem} item xs={5}>{team.goals.forGoals} - {team.goals.againstGoals}</Grid>
                 <Grid className={classes.griditem} item xs={3}>{team.points}</Grid>
               </Grid>))
           }
